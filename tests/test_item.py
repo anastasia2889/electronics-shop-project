@@ -22,3 +22,12 @@ def test_string_to_number():
     # Проверяем, что строка преобразуется в число правильно
     result = Item.string_to_number("5.2")
     assert result == 5
+
+
+def test_item_repr():
+    item = Item("Ipad", 1000, 5)
+    assert repr(item) == "Item('Ipad', 1000, 5)"
+
+def test_item_str():
+    item = Item("IphonXSMax", 1000, 5)
+    assert str(item) == "IphonXSMax"
