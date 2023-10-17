@@ -1,5 +1,6 @@
 import csv
 import os.path
+from builtins import str
 
 
 class Item:
@@ -9,7 +10,7 @@ class Item:
     pay_rate = 1.0
     all = []
 
-    def __init__(self, name, price, quantity: int) -> None:
+    def __init__(self, name: str, price: float, quantity: int) -> None:
         """
         Создание экземпляра класса item.
 
@@ -23,10 +24,14 @@ class Item:
         self.all.append(self)
 
     def __repr__(self):
-        return f"Item('{self.name}', {self.price}, {self.quantity})"
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
+
+    def __add__(self, other):
+        if isinstance(other, self.__class__):
+            return int(self.quantity) + int(other.quantity)
 
     @property
     def name(self):
